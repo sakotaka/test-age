@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head prefix="og:http://ogp.me/ns#">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="本庄にあるとある古民家。誰もいないはずの古民家にどうやら黒い影が目撃されたようだ．．．そこで君たちにはこの影について調査をしてほしい" />
+        <meta name="keywords" content="謎解き,空き家,本庄"/>
+        <meta property="og:url" content="/kmocy.github.io/kmocy/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="影の家|【謎解きイベント団体】 kmocy" />
+        <meta property="og:description" content="本庄にあるとある古民家。誰もいないはずの古民家にどうやら黒い影が目撃されたようだ．．．そこで君たちにはこの影について調査をしてほしい" />
+        <meta property="og:site_name" content="kagenoie_kmocy" />
+        <meta property="og:image" content="image/kmocy.png" />
+        <!-- <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@ユーザー名" /> -->
+        <title>影の家｜kmocy</title>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+        <link rel="stylesheet" href="style.css">
+        <link rel="con" href="./favicon.ico" sizes="any"><!-- 32×32 -->
+        <link rel="icon" href="./icon.svg" type="image/svg+xml">
+        <link rel="apple-touch-icon" href="./apple-touch-icon.png"><!-- 180×180 -->
+        <link rel="manifest" href="./manifest.webmanifest">
+        <script type="application/ld+json">
+        {
+            "@context" : "https://schema.org",
+            "@type" : "WebSite",
+            "name" : "kagenoie_kmocy",
+            "alternateName" : "影の家|コモシー",
+            "url" : "https://kmocy.github.io/kagenoie"
+        }
+        </script>
+    </head>
+    <body>
+        <!-- ヘッダー -->
+        <div class="bg">
+            <h1>影の家</h1>
+        </div>
+        <header id="header">
+            <div class="logo"><a href="#Home">影の家</a></div>
+            <nav>
+                <ul>
+                    <!-- <li class ="header_nav"><a href="#event">イベント</span></a></li> -->
+                    <!-- <li class ="header_nav"><a href="#nazo">謎解き</a></li> -->
+                    <li class ="header_nav">lightステータス：<input type="button" value="light_st" id="light_st"></li>
+                    <li class ="header_nav"><a href="#news">注意事項/FAQ</a></li>
+                    <li class ="header_nav apply" id="apply"><a href="https://forms.gle/rELULxucAGCesUfi9">申し込みはこちら</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <img class="applypointer hidden" src="image/pointer.png" id="applypointer" alt="指">
+            <section id="Home">
+                <div class="Home_img">
+                    <div class="turn-off" id="turn-off">
+                        <img class="turn-off_img" src="./image/off-home.jpg" id="turn-off_img" alt="電源オフ画像">
+                        <img class="off-light light" id="turn-on_button" src="./image/on-light.png" alt="オフライト">
+                        <img class="on-tv tv hidden" src="./image/on-tv.png" alt="TV1">
+                        <img class="off-tv tv" src="./image/off-tv.png" alt="TV2">
+                    </div>
+                    <div class="turn-on hidden" id="turn-on">
+                        <img class="turn-on_img" src="./image/on-home.jpg" id="turn-on_img" alt="電源オン画像">
+                        <img class="on-light light" id="turn-off_button" src="./image/on-light.png" alt="オンライト">
+                        <img class="on-tv tv hidden" src="./image/on-tv.png" alt="TV3">
+                        <img class="off-tv tv" src="./image/off-tv.png" alt="TV4">
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <ul>
+                <li class ="footer_nav"><a>開催団体：kmocy</a></li>
+                <li class ="footer_nav apply"><a>お問い合わせ：takahiro1308k@gmail.com</a></li>
+            </ul>
+        </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let style;
+                let lightSwitch = false;
+                let tvSwitch = false;
+                const apply = document.getElementById('apply');
+                const applyPointer = document.getElementById('applypointer');
+                const lightOff = document.getElementById('turn-off');
+                const lightOffButton = document.getElementById('turn-off_button');
+                const lightOn = document.getElementById('turn-on');
+                const lightOnButton = document.getElementById('turn-on_button');
+                const onTv = document.getElementsByClassName('on-tv');
+                const offTv = document.getElementsByClassName('off-tv');
+                let light = true;
+                console.log(light);
+                console.log(onTv[0]);
+                const Home = document.getElementById("Home");
+                var homeRect = Home.getBoundingClientRect();
+                var tvRect = offTv[0].getBoundingClientRect();
+                console.log(tvRect.left);
+                var tvX = window.pageXOffset + tvRect.left + (tvRect.right - tvRect.left)/2 - homeRect.left;
+                var tvY = window.pageYOffset + tvRect.top + (tvRect.bottom - tvRect.top)/2 - homeRect.top;
+
+                function mouseData(e){
+                    var targetElement = document.querySelector('.turn-off');
+                    var rect = targetElement.getBoundingClientRect();
+                    var mouseX = e.clientX;
+                    var mouseY = e.clientY;
+                    var localX = mouseX - rect.left;
+                    var localY = mouseY - rect.top;
+                    var distance = Math.sqrt(Math.pow(mouseX - tvX, 2) + Math.pow(mouseY - tvY, 2));
+                    return [localX ,localY ,distance]
+                }
+                window.addEventListener('mousemove', function(e) {
+                    var targetElement = document.querySelector('.turn-off');
+                    var mouseMove = mouseData(e);
+                    var localX = mouseMove[0];
+                    var localY = mouseMove[1];
+                    var distance = mouseMove[2];
+                    console.log(mouseMove);
+                    var style = 'ellipse(70px 70px at ' + localX + 'px ' + localY + 'px)';
+                    document.getElementById("light_st").value=light;
+                    if(!lightSwitch&&light){
+                        targetElement.style.clipPath = style;
+                        if (distance > 350) {
+                            light = true;
+                        } 
+                    }
+                    if(!lightSwitch && distance <= 350 && tvSwitch){
+                        light = false;
+                    }else if(!lightSwitch && distance > 350 && tvSwitch){
+                        light = true;
+                        tvSwitch = false;
+                        offTv[0].classList.remove("hidden");
+                        onTv[0].classList.add("hidden");
+                    }
+                });
+                lightOnButton.addEventListener("click", (event) => {
+                    console.log("電源オン！");
+                    lightOff.classList.add("hidden");
+                    lightOn.classList.remove("hidden");
+                    lightSwitch = true;
+                });
+                lightOffButton.addEventListener("click", (event) => {
+                    console.log("電源オフ！");
+                    lightOff.classList.remove("hidden");
+                    lightOn.classList.add("hidden");
+                    lightSwitch = false;
+                });
+                
+                function applyMouseMove() {
+                    applyPointer.classList.remove("hidden");
+                };
+                function applyMouseOut() {
+                    applyPointer.classList.add("hidden");
+                };
+                if(!lightSwitch){
+                    apply.onmousemove = applyMouseMove;
+                    apply.onmouseout = applyMouseOut;
+                };
+                for(let i=0;i<2;i++){
+                    offTv[i].addEventListener("click", (event) => {
+                        console.log("テレビ電源オン！");
+                        offTv[i].classList.add("hidden");
+                        onTv[i].classList.remove("hidden");
+                        tvSwitch = true;
+                        if(!lightSwitch)
+                        {
+                            tvRect = onTv[0].getBoundingClientRect();
+                            tvX = window.pageXOffset + tvRect.left + (tvRect.right - tvRect.left)/2 - homeRect.left;
+                            tvY = window.pageYOffset + tvRect.top + (tvRect.bottom - tvRect.top)/2 - homeRect.top;
+                            var targetElement = document.querySelector('.turn-off');
+                            var tvStyle = 'ellipse(350px 350px at ' + tvX + 'px ' + tvY + 'px)';
+                            targetElement.style.clipPath = tvStyle;
+                            light = false;
+                            console.log(light);
+                        }
+                    });
+                    onTv[i].addEventListener("click", (e) => {
+                        var targetElement = document.querySelector('.turn-off');
+                        var mouseMove = mouseData(e);
+                        var localX = mouseMove[0];
+                        var localY = mouseMove[1];
+                        var distance = mouseMove[2];
+                        var style = 'ellipse(70px 70px at ' + localX + 'px ' + localY + 'px)';
+                        targetElement.style.clipPath = style;
+                        console.log("テレビ電源オフ！");
+                        onTv[i].classList.add("hidden");
+                        offTv[i].classList.remove("hidden");
+                        tvSwitch = false;
+                        light = true;
+                    });
+                };
+            });
+        </script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>

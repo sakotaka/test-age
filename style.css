@@ -1,0 +1,285 @@
+*{
+    margin:0rem;
+    padding:0rem;
+}
+html{
+    font-size: 0.0667vw;
+}
+html, body {
+    height: 100%;
+    width: 100%;
+}
+body{
+    margin:0rem;
+    padding:0rem;
+    font-size: 16rem;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(0, 0, 0);
+    user-select: none; /* CSS3 */
+    -moz-user-select: none; /* Firefox */
+    -webkit-user-select: none; /* Safari、Chrome */
+    -ms-user-select: none; /* IE10 */
+    position: relative;
+}
+.logo a{
+    color: #ff0000;
+    text-decoration: none;
+    font-size: 50rem;
+    font-family: 'ヒラギノ明朝 Pro', 'Hiragino Mincho Pro', serif;
+    margin-left:25rem;
+}
+header{
+    z-index: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    font-family:'メイリオ', 'Meiryo','ＭＳ ゴシック','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',sans-serif;
+    background-color: rgb(0, 0, 0);
+    width:100%;
+}
+header nav{
+    display: inline-block;
+    text-align: right;
+    padding:0rem;
+    margin-right:50rem;
+    margin-left: auto;
+}
+header nav li a{
+    text-decoration: none;
+    padding: 10rem;
+    color: rgb(255, 0, 0);
+}
+header nav li:last-child a{
+    background-color: #ff0000;
+    border-radius: 5px;
+    font-weight:900;
+    margin-left: 140rem;
+    padding: 10rem;
+    color: rgb(0, 0, 0);
+}
+/* header nav a:hover{
+    text-decoration: none;
+    box-shadow: 10px 5px 5px red;
+    background-color: #ff0000;
+    border-bottom: 5px solid #b84c00;
+    padding: 10rem;
+    color: rgb(0, 0, 0);
+    animation: appear 4s ease-out 0s; 
+    animation-fill-mode: forwards;
+} */
+header nav li{
+    display: inline-block;
+    font-size: 25rem;
+    line-height:120rem;
+    text-align: center;
+    font-family: 'ヒラギノ明朝 Pro', 'Hiragino Mincho Pro', serif;
+}
+header nav li:not(:first-child){
+    margin-left: 50rem;
+}
+.applypointer{
+    position: absolute;
+    top:-7vh;
+    right:15%;
+    max-height: 30vh;
+    z-index: 10;
+    pointer-events: none;
+}
+#Home {
+    position: relative;
+    height: 83vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg{
+    position: absolute;
+    width: 100%;
+    height:100vh;
+}
+.bg h1{
+    top:0;
+    position: absolute;
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+    height: 100vh; 
+    color: red;
+    background-color: black;
+    font-family: 'ヒラギノ明朝 Pro', 'Hiragino Mincho Pro', serif;
+    font-size: 60rem;
+    letter-spacing: 0.5em;
+    animation: disappear 1s ease-out 2s; 
+    animation-fill-mode: forwards;
+    pointer-events: none;
+}
+.Home_img{
+    position: absolute;
+    top:0;
+    left:0;
+    display: block;
+    width:100%;
+    height: 83vh;
+    background-color: black;
+    z-index: 1;
+}
+.Home_img .turn-off{
+    position: absolute;
+    top:0;
+    left:0;
+    display: block;
+    width:100%;
+    height: 83vh;
+    clip-path: ellipse(0px 0px);
+}
+.turn-off img{
+    filter: grayscale(70%);
+}
+img.turn-off_img{
+    pointer-events: none;
+    display: block;
+    top:0;
+    left:0;
+    width:100%;
+    height: 83vh;
+    object-fit: cover;
+}
+.Home_img .turn-on{
+    position: absolute;
+    top:0;
+    left:0;
+    display: block;
+    width:100%;
+    height: 83vh;
+}
+img.turn-on_img{
+    pointer-events: none;
+    display: block;
+    top:0;
+    left:0;
+    width:100%;
+    height: 83vh;
+    object-fit: cover;
+}
+img.light{
+    position: absolute;
+    width:5%;
+    height: auto;
+    object-fit: cover;
+    top: 0;
+    left:60%;
+    cursor: pointer;
+    z-index: 1;
+}
+img.on-tv{
+    position: absolute;
+    position:fixed;
+    width:15%;
+    height: auto;
+    object-fit: cover;
+    bottom: 13vh;
+    right:60%;
+    cursor: pointer;
+}
+img.off-tv{
+    position: absolute;
+    position:fixed;
+    width:15%;
+    height: auto;
+    object-fit: cover;
+    bottom: 13vh;
+    right:60%;
+    cursor: pointer;
+}
+img.off-light{
+    filter: grayscale(100%);
+}
+
+.hidden{
+    display: none !important;
+}
+@keyframes appear{
+    0% { 
+        opacity: 0;
+    }
+    50% { 
+        opacity: 0;
+    }
+    75%{
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes disappear{
+    0% { 
+        opacity: 1;
+    }
+    50% { 
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes slide{
+    0% { 
+        width: 100%;
+    }
+    100% {
+        width: 0%;
+    }
+}
+footer{
+    height:7vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+footer ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width:100%;
+}
+footer li a{
+    display: block;
+    text-decoration: none;
+    font-family:'メイリオ', 'Meiryo','ＭＳ ゴシック','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',sans-serif;
+    color:#fff;
+    align-items: center;
+    text-align: center;
+}
+@media screen and (max-width:800px) {
+    body{
+        width: 100%;
+    }
+    header{
+        width: 100%;
+        height: 10vh;
+    }
+    header nav li{
+        font-size: 35rem;
+    }
+    #Home h1{
+        font-weight:normal;
+    }
+    .event-item h3{
+        width: 300rem;
+        height: 60rem;
+        line-height: 60rem;
+    }
+    footer{
+        display: none;
+   }
+}
